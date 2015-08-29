@@ -1,0 +1,570 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <RelativeLayout
+        android:id="@+id/topbar"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:background="#2d2d2d" >
+
+        <ImageView
+            android:id="@+id/imgRightNotificationLocal"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp"
+            android:background="#ffffff"
+            android:src="@drawable/img_contact_new" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:alpha="0.8"
+            android:text="Emotional State Project"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:id="@+id/textView2" />
+
+        <Button
+            android:id="@+id/btstartRecord"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:background="@drawable/boder"
+            android:clickable="true"
+            android:enabled="true"
+            android:text="Start Record"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/textView2" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/body"
+        android:layout_width="fill_parent"
+        android:layout_height="430dp"
+        android:layout_below="@+id/topbar" >
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#2bade0" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0.3"
+                        android:alpha="0.8"
+                        android:gravity="center"
+                        android:text="Engagement/Boredom"
+                        android:textColor="#ffffff"
+                        android:textSize="15dp"
+                        android:id="@+id/textView" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" >
+
+                    <RelativeLayout
+                        android:id="@+id/re"
+                        android:layout_width="27dp"
+                        android:layout_height="200dp"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:id="@+id/li"
+                            android:layout_width="25dp"
+                            android:layout_height="200dp"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.2"
+                                android:alpha="0.8"
+                                android:text="1.0"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.2"
+                                android:alpha="0.9"
+                                android:gravity="center"
+                                android:text="0.5"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.2"
+                                android:alpha="0.8"
+                                android:gravity="bottom"
+                                android:text="0"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="200dp"
+                            android:layout_toRightOf="@+id/li"
+                            android:layout_weight="0.2"
+                            android:background="#696968" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reEngagement"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toRightOf="@+id/re" >
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="1dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="98dp"
+                            android:layout_weight="0.2"
+                            android:background="#696968" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#22b371" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0.3"
+                        android:alpha="0.8"
+                        android:gravity="center"
+                        android:text="Long Term Excitement"
+                        android:textColor="#ffffff"
+                        android:textSize="15dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" >
+
+                    <RelativeLayout
+                        android:id="@+id/relongExcitement1"
+                        android:layout_width="27dp"
+                        android:layout_height="200dp"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:id="@+id/li"
+                            android:layout_width="25dp"
+                            android:layout_height="200dp"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.2"
+                                android:alpha="0.8"
+                                android:text="1.0"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.2"
+                                android:alpha="0.9"
+                                android:gravity="center"
+                                android:text="0.5"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.2"
+                                android:alpha="0.8"
+                                android:gravity="bottom"
+                                android:text="0"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="200dp"
+                            android:layout_toRightOf="@+id/li"
+                            android:layout_weight="0.2"
+                            android:background="#696968" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relongExcitement"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@+id/relongExcitement1" >
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="1dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="98dp"
+                            android:layout_weight="0.2"
+                            android:background="#696968" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#ffa500" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0.3"
+                        android:alpha="0.8"
+                        android:gravity="center"
+                        android:text="Instantaneous Excitement"
+                        android:textColor="#ffffff"
+                        android:textSize="15dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" >
+
+                    <RelativeLayout
+                        android:id="@+id/reInstantaneousExcitement1"
+                        android:layout_width="27dp"
+                        android:layout_height="200dp"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:id="@+id/li"
+                            android:layout_width="25dp"
+                            android:layout_height="200dp"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.2"
+                                android:alpha="0.8"
+                                android:text="1.0"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.2"
+                                android:alpha="0.9"
+                                android:gravity="center"
+                                android:text="0.5"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.2"
+                                android:alpha="0.8"
+                                android:gravity="bottom"
+                                android:text="0"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="200dp"
+                            android:layout_toRightOf="@+id/li"
+                            android:layout_weight="0.2"
+                            android:background="#696968" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reInstantaneousExcitement"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@+id/reInstantaneousExcitement1" >
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="1dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="98dp"
+                            android:layout_weight="0.2"
+                            android:background="#696968" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#a6c67b" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0.3"
+                        android:alpha="0.8"
+                        android:gravity="center"
+                        android:text="Meditation"
+                        android:textColor="#ffffff"
+                        android:textSize="15dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" >
+
+                    <RelativeLayout
+                        android:id="@+id/reMeditation1"
+                        android:layout_width="27dp"
+                        android:layout_height="200dp" >
+
+                        <LinearLayout
+                            android:id="@+id/li"
+                            android:layout_width="25dp"
+                            android:layout_height="200dp"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.2"
+                                android:alpha="0.8"
+                                android:text="1.0"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.2"
+                                android:alpha="0.9"
+                                android:gravity="center"
+                                android:text="0.5"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.2"
+                                android:alpha="0.8"
+                                android:gravity="bottom"
+                                android:text="0"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="200dp"
+                            android:layout_toRightOf="@+id/li"
+                            android:layout_weight="0.2"
+                            android:background="#696968" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reMeditation"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@+id/reMeditation1" >
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="1dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="98dp"
+                            android:layout_weight="0.2"
+                            android:background="#696968" />
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/content1"
+            android:layout_width="fill_parent"
+            android:layout_height="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="0.4" >
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="#696968" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:layout_weight="0.4" >
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="#696968" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:layout_weight="0.4" >
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="#696968" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:layout_weight="0.4" >
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="#696968" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/body"
+        android:background="#131247"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.3"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:text="15"
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:text="30"
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:text="45"
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:text="60"
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/content"
+        android:background="#2d2d2d" >
+
+    </RelativeLayout>
+
+</RelativeLayout>
