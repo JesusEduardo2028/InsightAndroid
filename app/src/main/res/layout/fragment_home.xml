@@ -17,5 +17,12 @@
         android:id="@+id/bt_emostates"
         android:onClick="startEmoStates"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="No data"
+        android:id="@+id/tv_meditation_score" />
+
 
 </LinearLayout>

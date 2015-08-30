@@ -19,4 +19,9 @@ public class HomeActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
+    public void updateEmoStateView(){
+
+
+    }
 }

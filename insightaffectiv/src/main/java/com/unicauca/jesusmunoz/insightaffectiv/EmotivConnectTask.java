@@ -2,11 +2,13 @@ package com.unicauca.jesusmunoz.insightaffectiv;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.emotiv.insight.IEdk;
+import com.unicauca.jesusmunoz.services.EmotivService;
 
 /**
  * Created by jesuseduardomunoz on 8/29/15.
@@ -41,9 +43,9 @@ public class EmotivConnectTask extends AsyncTask<String, Void, Boolean> {
     protected void onPostExecute(final Boolean success) {
         if (dialog.isShowing()) {
             dialog.dismiss();
-
         }
         if (success) {
+            activity.startService(new Intent(activity, EmotivService.class));
             Toast.makeText(activity, "Device Connected!", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(activity, "No Insight device was found", Toast.LENGTH_LONG).show();
