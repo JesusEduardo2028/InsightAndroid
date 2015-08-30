@@ -1,6 +1,13 @@
 package com.unicauca.jesusmunoz.insightandroid;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,8 +15,18 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.unicauca.jesusmunoz.insightaffectiv.EmoStatesActivity;
+import com.unicauca.jesusmunoz.insightaffectiv.EmotivConnectTask;
+import com.unicauca.jesusmunoz.services.EmotivService;
+
+import java.io.BufferedWriter;
 
 public class HomeActivity extends AppCompatActivity {
+
+
+    private Boolean lock = false, engineConnector = false;
+    private BufferedWriter Emo_writer;
+    private static final int REQUEST_ENABLE_BT = 1;
+    private BluetoothAdapter mBluetoothAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +57,26 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void startEmoStates(View v){
-        startActivity(new Intent(this,EmoStatesActivity.class));
+    public void startEmoStates(View v)
+    {
+        final BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        mBluetoothAdapter = bluetoothManager.getAdapter();
+        if (!mBluetoothAdapter.isEnabled()) {
+            if (!mBluetoothAdapter.isEnabled()) {
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+            }
+        }
+
+        //startService(new Intent(this,EmotivService.class));
+        AsyncTask searchDevicesTask = new EmotivConnectTask(this).execute();
     }
+
+
+
+
+
+
+
+
 }
