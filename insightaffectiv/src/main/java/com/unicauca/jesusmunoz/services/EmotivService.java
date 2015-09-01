@@ -2,11 +2,9 @@ package com.unicauca.jesusmunoz.services;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Message;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.emotiv.insight.IEdk;
 import com.emotiv.insight.IEdkErrorCode;
 import com.emotiv.insight.IEmoStateDLL;
@@ -17,10 +15,27 @@ import com.emotiv.insight.IEmoStateDLL;
 public class EmotivService extends IntentService {
 
     private boolean insightDeviceConnected;
-    public static final String REQUEST_STRING = "myRequest";
-    public static final String RESPONSE_STRING = "myResponse";
-    public static final String RESPONSE_MESSAGE = "myResponseMessage";
 
+    public static final String ENGAGEMENT_BOREDOM_SCORE  = "ENGAGEMENT_BOREDOM_SCORE";
+    public static final String EXCITEMENT_LONG_TERM_SCORE = "EXCITEMENT_LONG_TERM_SCORE";
+    public static final String INSTANTANEOUS_EXCITEMENT_SCORE = "INSTANTANEOUS_EXCITEMENT_SCORE";
+    public static final String RELAXATION_SCORE = "RELAXATION_SCORE";
+    public static final String STRESS_SCORE = "STRESS_SCORE";
+    public static final String INTEREST_SCORE = "INTEREST_SCORE";
+    public static  final String MOTION_DATA = "MOTION_DATA";
+    public static final String MOTION_NUMBER_OF_SAMPLE = "MOTION_NUMBER_OF_SAMPLE";
+
+    public static final String COUNTER_MEMS = "COUNTER_MEMS";
+    public static final String GYROX = "GYROX";
+    public static final String GYROY = "GYROY";
+    public static final String GYROZ = "GYROZ";
+    public static final String ACCX = "ACCX";
+    public static final String ACCY = "ACCY";
+    public static final String ACCZ = "ACCZ";
+    public static final String MAGX = "MAGX";
+    public static final String MAGY = "MAGY";
+    public static final String MAGZ = "MAGZ";
+    public static final String TimeStamp = "TimeStamp";
 
     public EmotivService() {
         super("Emotivservice");
@@ -28,89 +43,67 @@ public class EmotivService extends IntentService {
 
     public void onCreate() {
         super.onCreate();
-        Log.d("Server", ">>>onCreate()");
+        insightDeviceConnected = true;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
-
-        return super.onStartCommand(intent,flags,startId);
+        return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        //Toast.makeText(this, "Start Insight listening!!!", Toast.LENGTH_LONG).show();
-        insightDeviceConnected = true;
-
 
         while (insightDeviceConnected) {
             try {
-
                 int stateConnect = IEdk.IEE_EngineGetNextEvent();
-
                 if (stateConnect == IEdkErrorCode.EDK_OK.ToInt()) {
                     int eventType = IEdk.IEE_EmoEngineEventGetType();
 
-                  /*  Log.d("code", stateConnect + "");
-
-                    if (eventType == IEdk.IEE_Event_t.IEE_UserAdded.ToInt()) {
-                        engineConnector = true;
-
-                        Message message = dialogHandler.obtainMessage();
-                        Bundle bundle  = new Bundle();
-                        bundle.putString("message","Connect insight successful.");
-                        message.setData(bundle);
-                        dialogHandler.sendMessage(message);
-
-                    } else if (eventType == IEdk.IEE_Event_t.IEE_UserRemoved.ToInt()) {
-                        engineConnector = false;
-
-                        Message message = dialogHandler.obtainMessage();
-                        Bundle bundle  = new Bundle();
-                        bundle.putString("message","Insight disconnected.");
-                        message.setData(bundle);
-                        dialogHandler.sendMessage(message);
-
-                    }*/
-
+                    // If no insight device is detected exit from loop
                     if (eventType == IEdk.IEE_Event_t.IEE_UserRemoved.ToInt()) {
-                        Log.d("DISCONNECT",  "********************************************");
+                        Log.d("INFO", "Device disconnected");
+                        IEdk.IEE_MotionDataFree();
                         //IEdk.IEE_EngineDisconnect();
                         break;
                     }
 
+                    Intent broadcastIntent = new Intent();
+                    broadcastIntent.setAction("EMO_STATE_FILTER");
+                    broadcastIntent.addCategory(Intent.CATEGORY_DEFAULT);
+                    // Get Raw data
+                    Log.d("INFO", "New raw data..");
+                    int userId = IEdk.IEE_EmoEngineEventGetUserId();
+                    IEdk.IEE_MotionDataUpdateHandle(userId);
+                    double[] eeg_data = IEdk.IEE_MotionDataGet();
+                    broadcastIntent.putExtra(EmotivService.MOTION_DATA, eeg_data);
+                    broadcastIntent.putExtra(EmotivService.MOTION_NUMBER_OF_SAMPLE,IEdk.IEE_MotionDataGetNumberOfSample(userId));
 
+                    // Search for new emo state
                     if (eventType == IEdk.IEE_Event_t.IEE_EmoStateUpdated.ToInt()) {
-                        Log.d("INFOOOO", "INFO--------------------------------**^^^^^^^");
 
                         IEdk.IEE_EmoEngineEventGetEmoState();
-                        Log.d("New_EMO_STATE", IEmoStateDLL.IS_PerformanceMetricGetEngagementBoredomScore() + "");
 
-
-                        Intent broadcastIntent = new Intent();
-                        broadcastIntent.setAction("EMO_STATE_FILTER");
+                        Log.d("INFO", "New emo State..");
                         broadcastIntent.addCategory(Intent.CATEGORY_DEFAULT);
-                        broadcastIntent.putExtra("engagementBoredomScore", IEmoStateDLL.IS_PerformanceMetricGetEngagementBoredomScore());
-                        broadcastIntent.putExtra("excitementLongTermScore", IEmoStateDLL.IS_PerformanceMetricGetExcitementLongTermScore());
-                        broadcastIntent.putExtra("instantaneousExcitementScore", IEmoStateDLL.IS_PerformanceMetricGetInstantaneousExcitementScore());
-                        broadcastIntent.putExtra("relaxationScore", IEmoStateDLL.IS_PerformanceMetricGetRelaxationScore());
-                        sendBroadcast(broadcastIntent);
+                        broadcastIntent.putExtra(EmotivService.ENGAGEMENT_BOREDOM_SCORE, IEmoStateDLL.IS_PerformanceMetricGetEngagementBoredomScore());
+                        broadcastIntent.putExtra(EmotivService.EXCITEMENT_LONG_TERM_SCORE, IEmoStateDLL.IS_PerformanceMetricGetExcitementLongTermScore());
+                        broadcastIntent.putExtra(EmotivService.INSTANTANEOUS_EXCITEMENT_SCORE, IEmoStateDLL.IS_PerformanceMetricGetInstantaneousExcitementScore());
+                        broadcastIntent.putExtra(EmotivService.RELAXATION_SCORE, IEmoStateDLL.IS_PerformanceMetricGetRelaxationScore());
+                        broadcastIntent.putExtra(EmotivService.STRESS_SCORE, IEmoStateDLL.IS_PerformanceMetricGetStressScore());
+                        broadcastIntent.putExtra(EmotivService.INTEREST_SCORE, IEmoStateDLL.IS_PerformanceMetricGetInterestScore());
 
-                       /* Data[0] = IEmoStateDLL.IS_PerformanceMetricGetEngagementBoredomScore();
-                        Data[1] = IEmoStateDLL.IS_PerformanceMetricGetExcitementLongTermScore();
-                        Data[2] = IEmoStateDLL.IS_PerformanceMetricGetInstantaneousExcitementScore();
-                        Data[3] = IEmoStateDLL.IS_PerformanceMetricGetRelaxationScore();
-                        handler.sendMessage(handler.obtainMessage(0, Data));*/
-                    }else{
-                        Log.d("NO DATA", "NO DATA");
+                    } else {
+                        Log.d("INFO", "No emo State detected..");
                     }
+                    //Send insight data to broadcast receiver
+                    sendBroadcast(broadcastIntent);
                 }
 
             } catch (Exception ex) {
                 ex.printStackTrace();
-                Log.d("ERROR", "ERROR******************************");
             }
 
         }

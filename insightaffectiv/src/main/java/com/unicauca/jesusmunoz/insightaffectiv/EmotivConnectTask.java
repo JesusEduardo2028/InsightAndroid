@@ -65,6 +65,7 @@ public class EmotivConnectTask extends AsyncTask<String, Void, Boolean> {
                         if (!insightDeviceConnected) {
                             insightDeviceConnected = true;
                             IEdk.IEE_ConnectDevice(0);
+                            IEdk.IEE_MotionDataCreate();
                         }
                     }
                 } catch (Exception e) {
