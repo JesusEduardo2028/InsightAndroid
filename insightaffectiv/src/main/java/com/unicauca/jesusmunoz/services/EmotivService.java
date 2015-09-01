@@ -1,13 +1,17 @@
 package com.unicauca.jesusmunoz.services;
 
 import android.app.IntentService;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.emotiv.insight.IEdk;
 import com.emotiv.insight.IEdkErrorCode;
 import com.emotiv.insight.IEmoStateDLL;
+import com.unicauca.jesusmunoz.insightaffectiv.EmotivConnectTask;
 
 /**
  * Created by jesuseduardomunoz on 8/29/15.
@@ -48,7 +52,6 @@ public class EmotivService extends IntentService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
         Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
         return super.onStartCommand(intent, flags, startId);
     }
@@ -66,7 +69,8 @@ public class EmotivService extends IntentService {
                     if (eventType == IEdk.IEE_Event_t.IEE_UserRemoved.ToInt()) {
                         Log.d("INFO", "Device disconnected");
                         IEdk.IEE_MotionDataFree();
-                        //IEdk.IEE_EngineDisconnect();
+                        IEdk.IEE_EngineDisconnect();
+                        stopSelf();
                         break;
                     }
 
@@ -107,6 +111,23 @@ public class EmotivService extends IntentService {
             }
 
         }
+
     }
 
+
+    @Override
+    public void onDestroy() {
+        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(EmotivConnectTask.INSIGHT_NOTIFICATION_ID);
+        Toast.makeText(this,"Insight device is not available!..from destroy",Toast.LENGTH_LONG).show();
+        super.onDestroy();
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(EmotivConnectTask.INSIGHT_NOTIFICATION_ID);
+        Toast.makeText(this,"Insight device is not available!..from unbind",Toast.LENGTH_LONG).show();
+        return super.onUnbind(intent);
+    }
 }
