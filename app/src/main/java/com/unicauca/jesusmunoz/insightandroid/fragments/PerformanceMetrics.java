@@ -13,8 +13,7 @@ import com.unicauca.jesusmunoz.insightandroid.R;
 
 
 public class PerformanceMetrics extends Fragment {
-
-    private OnFragmentInteractionListener mListener;
+    public static String TAG = "PERFORMANCE_MENTRICS_FRAGMENT";
 
     public PerformanceMetrics() {
         // Required empty public constructor
@@ -32,34 +31,15 @@ public class PerformanceMetrics extends Fragment {
         return inflater.inflate(R.layout.fragment_performance_metrics, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
-    }
-
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
     }
 
 }

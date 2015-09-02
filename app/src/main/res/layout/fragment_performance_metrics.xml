@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context="com.unicauca.jesusmunoz.insightandroid.HomeActivityFragment">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
