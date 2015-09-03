@@ -13,11 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.unicauca.jesusmunoz.insightaffectiv.EmotivConnectTask;
-import com.unicauca.jesusmunoz.services.EmotivService;
 
-import java.io.IOException;
+import com.unicauca.jesusmunoz.main.EmotivConnectTask;
+import com.unicauca.jesusmunoz.services.EmotivService;
 
 public class HomeActivity extends AppCompatActivity {
 

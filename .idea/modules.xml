@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/InsightAndroid.iml" filepath="$PROJECT_DIR$/InsightAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/insightaffectiv/insightaffectiv.iml" filepath="$PROJECT_DIR$/insightaffectiv/insightaffectiv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/insight/insight.iml" filepath="$PROJECT_DIR$/insight/insight.iml" />
     </modules>
   </component>
 </project>

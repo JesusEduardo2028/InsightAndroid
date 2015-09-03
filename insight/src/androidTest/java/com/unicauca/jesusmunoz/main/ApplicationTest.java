@@ -1,4 +1,4 @@
-package com.unicauca.jesusmunoz.insightaffectiv;
+package com.unicauca.jesusmunoz.main;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -4,14 +4,13 @@ import android.app.IntentService;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.emotiv.insight.IEdk;
 import com.emotiv.insight.IEdkErrorCode;
 import com.emotiv.insight.IEmoStateDLL;
-import com.unicauca.jesusmunoz.insightaffectiv.EmotivConnectTask;
+import com.unicauca.jesusmunoz.main.EmotivConnectTask;
 
 /**
  * Created by jesuseduardomunoz on 8/29/15.

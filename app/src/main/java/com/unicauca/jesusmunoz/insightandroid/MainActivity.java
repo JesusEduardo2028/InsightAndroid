@@ -16,7 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import com.unicauca.jesusmunoz.insightaffectiv.EmotivConnectTask;
+import com.unicauca.jesusmunoz.main.EmotivConnectTask;
 import com.unicauca.jesusmunoz.insightandroid.fragments.PerformanceMetrics;
 import com.unicauca.jesusmunoz.insightandroid.fragments.SettingsFragment;
 import com.unicauca.jesusmunoz.services.EmotivService;
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             onNavigationDrawerItemSelected(2);
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
 

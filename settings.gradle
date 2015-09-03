@@ -1,1 +1,1 @@
-include ':app', ':insightaffectiv'
+include ':app', ':insight'

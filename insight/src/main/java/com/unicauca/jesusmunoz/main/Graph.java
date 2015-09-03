@@ -1,4 +1,4 @@
-package com.unicauca.jesusmunoz.insightaffectiv;
+package com.unicauca.jesusmunoz.main;
 
 import android.content.Context;
 import android.graphics.Canvas;
