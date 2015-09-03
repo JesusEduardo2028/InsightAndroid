@@ -104,6 +104,16 @@ public class EmotivService extends IntentService {
                     }
                     //Send insight data to broadcast receiver
                     sendBroadcast(broadcastIntent);
+                }else{
+                    int number = IEdk.IEE_GetNumberDeviceInsight();
+                    if (number == 0) {
+                        insightDeviceConnected = false;
+                        Log.d("INFO","Device disconnected!");
+                        stopSelf();
+                        break;
+                    }
+                    Log.d("INFO",stateConnect+"");
+                    Log.d("NUMBER",number+"");
                 }
 
             } catch (Exception ex) {

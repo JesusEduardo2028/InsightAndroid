@@ -155,6 +155,10 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
 
+        if (id==R.id.action_example){
+            startEmoStates(null);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
