@@ -13,7 +13,7 @@ import com.unicauca.jesusmunoz.insightandroid.R;
 
 
 public class PerformanceMetrics extends Fragment {
-    public static String TAG = "PERFORMANCE_MENTRICS_FRAGMENT";
+    public static String TAG = "PERFORMANCE_METRICS_FRAGMENT";
 
     public PerformanceMetrics() {
         // Required empty public constructor

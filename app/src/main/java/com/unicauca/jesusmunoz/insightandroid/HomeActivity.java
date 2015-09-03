@@ -21,7 +21,6 @@ import java.io.IOException;
 
 public class HomeActivity extends AppCompatActivity {
 
-
     //private BufferedWriter Emo_writer;
     private static final int REQUEST_ENABLE_BT = 1;
     private BluetoothAdapter mBluetoothAdapter;
@@ -88,7 +87,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             }
         }
-
         AsyncTask searchDevicesTask = new EmotivConnectTask(this).execute();
     }
 
@@ -114,18 +112,15 @@ public class HomeActivity extends AppCompatActivity {
             tv_interestScore = (TextView) findViewById(R.id.tv_interest_score);
             tv_motion_data = (TextView) findViewById(R.id.tv_motion_data);
             tv_number_samples = (TextView) findViewById(R.id.tv_number_samples);
-
             tv_relaxationScore.setText(relaxationScore+"");
             tv_engagementBoredomScore.setText(engagementBoredomScore+"");
             tv_excitementLongTermScore.setText(excitementLongTermScore+"");
             tv_instantaneousExcitementScore.setText(instantaneousExcitementScore+"");
             tv_stressScore.setText(stressScore+"");
             tv_interestScore.setText(interestScore+"");
-
             tv_number_samples.setText(motion_number_sample+"");
+
             printFirstMotionDataSample(eeg_data);
-
-
         }
     }
 

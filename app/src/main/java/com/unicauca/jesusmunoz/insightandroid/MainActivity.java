@@ -1,13 +1,10 @@
 package com.unicauca.jesusmunoz.insightandroid;
-
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,13 +12,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.unicauca.jesusmunoz.insightaffectiv.EmotivConnectTask;
 import com.unicauca.jesusmunoz.insightandroid.fragments.PerformanceMetrics;
 import com.unicauca.jesusmunoz.insightandroid.fragments.SettingsFragment;
@@ -56,6 +50,7 @@ public class MainActivity extends AppCompatActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private  Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +127,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
@@ -152,18 +148,13 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            onNavigationDrawerItemSelected(2);
         }
-
-        if (id==R.id.action_example){
-            startEmoStates(null);
-        }
-
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
 
-    public void startEmoStates(View v) {
+    public void startEmoStates() {
         final BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = bluetoothManager.getAdapter();
         if (!mBluetoothAdapter.isEnabled()) {
@@ -172,8 +163,8 @@ public class MainActivity extends AppCompatActivity
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             }
         }
-
         AsyncTask searchDevicesTask = new EmotivConnectTask(this).execute();
+        searchDevicesTask.getStatus();
     }
 
     @Override
@@ -182,14 +173,16 @@ public class MainActivity extends AppCompatActivity
         super.onDestroy();
     }
 
+    public void changeActivity(View v){
+        startActivity(new Intent(this,HomeActivity.class));
+    }
+
     public class InsightReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             PerformanceMetrics myFragment = (PerformanceMetrics) getSupportFragmentManager().findFragmentByTag(PerformanceMetrics.TAG);
             if (myFragment != null && myFragment.isVisible()) {
                 // add your code here
-
-
                 float engagementBoredomScore = intent.getFloatExtra(EmotivService.ENGAGEMENT_BOREDOM_SCORE, 0);
                 float excitementLongTermScore = intent.getFloatExtra(EmotivService.EXCITEMENT_LONG_TERM_SCORE, 0);
                 float instantaneousExcitementScore = intent.getFloatExtra(EmotivService.INSTANTANEOUS_EXCITEMENT_SCORE, 0);

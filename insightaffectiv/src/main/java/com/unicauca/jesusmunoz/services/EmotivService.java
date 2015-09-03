@@ -52,7 +52,6 @@ public class EmotivService extends IntentService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -105,15 +104,8 @@ public class EmotivService extends IntentService {
                     //Send insight data to broadcast receiver
                     sendBroadcast(broadcastIntent);
                 }else{
-                    int number = IEdk.IEE_GetNumberDeviceInsight();
-                    if (number == 0) {
-                        insightDeviceConnected = false;
-                        Log.d("INFO","Device disconnected!");
-                        stopSelf();
-                        break;
-                    }
+                    Log.d("INFO", IEdk.IEE_GetNameDeviceInsightAtIndex(0));
                     Log.d("INFO",stateConnect+"");
-                    Log.d("NUMBER",number+"");
                 }
 
             } catch (Exception ex) {
@@ -124,20 +116,12 @@ public class EmotivService extends IntentService {
 
     }
 
-
     @Override
     public void onDestroy() {
         NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(EmotivConnectTask.INSIGHT_NOTIFICATION_ID);
-        Toast.makeText(this,"Insight device is not available!..from destroy",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Insight device has been unplugged!..",Toast.LENGTH_LONG).show();
         super.onDestroy();
     }
 
-    @Override
-    public boolean onUnbind(Intent intent) {
-        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.cancel(EmotivConnectTask.INSIGHT_NOTIFICATION_ID);
-        Toast.makeText(this,"Insight device is not available!..from unbind",Toast.LENGTH_LONG).show();
-        return super.onUnbind(intent);
-    }
 }

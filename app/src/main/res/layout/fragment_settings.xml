@@ -1,14 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.unicauca.jesusmunoz.insightandroid.fragments.SettingsFragment">
 
-    <Button
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Emo States"
-        android:id="@+id/bt_emostates"
-        android:onClick="startEmoStates"/>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Insight devices list"
+        android:id="@+id/textView10"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv_insight_devices"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp" />
 
 
-</FrameLayout>
+</LinearLayout>
