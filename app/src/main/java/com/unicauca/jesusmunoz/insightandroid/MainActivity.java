@@ -13,14 +13,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import com.unicauca.jesusmunoz.main.EmotivConnectTask;
+
+import com.unicauca.jesusmunoz.fragments.SettingsFragment;
 import com.unicauca.jesusmunoz.insightandroid.fragments.PerformanceMetrics;
-import com.unicauca.jesusmunoz.insightandroid.fragments.SettingsFragment;
 import com.unicauca.jesusmunoz.services.EmotivService;
 
 public class MainActivity extends AppCompatActivity
@@ -156,18 +155,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public void startEmoStates() {
-        final BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-        mBluetoothAdapter = bluetoothManager.getAdapter();
-        if (!mBluetoothAdapter.isEnabled()) {
-            if (!mBluetoothAdapter.isEnabled()) {
-                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-            }
-        }
-        AsyncTask searchDevicesTask = new EmotivConnectTask(this).execute();
-        searchDevicesTask.getStatus();
-    }
 
     @Override
     protected void onDestroy() {

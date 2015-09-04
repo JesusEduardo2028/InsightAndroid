@@ -1,4 +1,4 @@
-package com.unicauca.jesusmunoz.insightandroid.fragments;
+package com.unicauca.jesusmunoz.fragments;
 
 import android.app.Activity;
 import android.app.NotificationManager;
@@ -14,13 +14,12 @@ import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RadioGroup;
 import android.widget.Toast;
+
 import com.emotiv.insight.IEdk;
 import com.unicauca.jesusmunoz.adapters.InsightDevicesAdapter;
-import com.unicauca.jesusmunoz.insightandroid.R;
+import com.unicauca.jesusmunoz.main.R;
 import com.unicauca.jesusmunoz.services.EmotivService;
 import com.unicauca.jesusmunoz.util.InsightDevice;
 
@@ -44,7 +43,7 @@ public class SettingsFragment extends Fragment implements InsightDevicesAdapter.
         IEdk.IEE_EngineConnect(getActivity());
         devices = new ArrayList<>();
         searchDevices();
-        adapter = new InsightDevicesAdapter(getContext(),R.layout.device_adapter_layout,devices,this);
+        adapter = new InsightDevicesAdapter(getContext(), R.layout.device_adapter_layout,devices,this);
         this.dialog = new ProgressDialog(getContext());
     }
  

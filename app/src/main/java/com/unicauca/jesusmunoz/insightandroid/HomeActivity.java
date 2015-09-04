@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.unicauca.jesusmunoz.main.EmotivConnectTask;
 import com.unicauca.jesusmunoz.services.EmotivService;
 
 public class HomeActivity extends AppCompatActivity {
@@ -86,7 +85,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             }
         }
-        AsyncTask searchDevicesTask = new EmotivConnectTask(this).execute();
+        //AsyncTask searchDevicesTask = new EmotivConnectTask(this).execute();
     }
 
 

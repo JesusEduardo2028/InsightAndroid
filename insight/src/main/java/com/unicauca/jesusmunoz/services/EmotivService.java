@@ -2,19 +2,14 @@ package com.unicauca.jesusmunoz.services;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.emotiv.insight.IEdk;
 import com.emotiv.insight.IEdkErrorCode;
 import com.emotiv.insight.IEmoStateDLL;
-import com.unicauca.jesusmunoz.main.EmotivConnectTask;
-import com.unicauca.jesusmunoz.main.R;
 
 /**
  * Created by jesuseduardomunoz on 8/29/15.
