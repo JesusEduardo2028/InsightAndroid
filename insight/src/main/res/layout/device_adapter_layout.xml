@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="ID: "
+            android:id="@+id/textView3"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0"
+            android:id="@+id/tv_device_id"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/textView3"
+            android:layout_alignBaseline="@+id/textView3"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Name: "
+            android:id="@+id/textView5"
+            android:textStyle="bold"
+            android:layout_alignTop="@+id/textView3"
+            android:layout_toEndOf="@+id/tv_device_id"
+            android:layout_centerVertical="true"
+            android:layout_alignBaseline="@id/tv_device_id"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="12345678901234567890"
+            android:id="@+id/tv_device_name"
+            android:maxLength="15"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/textView5"
+            android:layout_alignBaseline="@id/tv_device_id"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connect"
+            android:id="@+id/bt_device_connect"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+</LinearLayout>

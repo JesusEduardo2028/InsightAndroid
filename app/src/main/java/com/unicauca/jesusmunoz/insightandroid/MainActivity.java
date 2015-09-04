@@ -1,4 +1,5 @@
 package com.unicauca.jesusmunoz.insightandroid;
+import android.app.NotificationManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
@@ -12,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -170,7 +172,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         this.unregisterReceiver(receiver);
+        removeEmotivNotification();
         super.onDestroy();
+    }
+
+
+    public void removeEmotivNotification(){
+        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(EmotivService.INSIGHT_NOTIFICATION_ID);
     }
 
     public void changeActivity(View v){

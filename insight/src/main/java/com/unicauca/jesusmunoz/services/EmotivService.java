@@ -2,8 +2,11 @@ package com.unicauca.jesusmunoz.services;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -11,6 +14,7 @@ import com.emotiv.insight.IEdk;
 import com.emotiv.insight.IEdkErrorCode;
 import com.emotiv.insight.IEmoStateDLL;
 import com.unicauca.jesusmunoz.main.EmotivConnectTask;
+import com.unicauca.jesusmunoz.main.R;
 
 /**
  * Created by jesuseduardomunoz on 8/29/15.
@@ -18,6 +22,7 @@ import com.unicauca.jesusmunoz.main.EmotivConnectTask;
 public class EmotivService extends IntentService {
 
     private boolean insightDeviceConnected;
+    public static int  INSIGHT_NOTIFICATION_ID = 100;
 
     public static final String ENGAGEMENT_BOREDOM_SCORE  = "ENGAGEMENT_BOREDOM_SCORE";
     public static final String EXCITEMENT_LONG_TERM_SCORE = "EXCITEMENT_LONG_TERM_SCORE";
@@ -40,6 +45,8 @@ public class EmotivService extends IntentService {
     public static final String MAGZ = "MAGZ";
     public static final String TimeStamp = "TimeStamp";
 
+    private int deviceNum;
+
     public EmotivService() {
         super("Emotivservice");
     }
@@ -51,6 +58,9 @@ public class EmotivService extends IntentService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        this.deviceNum = intent.getIntExtra("deviceNum",0);
+        IEdk.IEE_ConnectDevice(deviceNum);
+        IEdk.IEE_MotionDataCreate();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -118,9 +128,8 @@ public class EmotivService extends IntentService {
     @Override
     public void onDestroy() {
         NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.cancel(EmotivConnectTask.INSIGHT_NOTIFICATION_ID);
+        notificationManager.cancel(INSIGHT_NOTIFICATION_ID);
         Toast.makeText(this,"Insight device has been unplugged!..",Toast.LENGTH_LONG).show();
         super.onDestroy();
     }
-
 }

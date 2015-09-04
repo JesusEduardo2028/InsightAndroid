@@ -10,7 +10,7 @@
 
     <string name="action_example">Example action</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Search Devices</string>
     <string name="insight_android">Insight Android</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="hello_world">Hello world!</string>
