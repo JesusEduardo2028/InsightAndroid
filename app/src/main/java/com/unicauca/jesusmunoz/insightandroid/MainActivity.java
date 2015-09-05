@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.unicauca.jesusmunoz.fragments.SettingsFragment;
+import com.unicauca.jesusmunoz.insightandroid.fragments.MotionDataFragment;
 import com.unicauca.jesusmunoz.insightandroid.fragments.PerformanceMetrics;
 import com.unicauca.jesusmunoz.services.EmotivService;
 
@@ -89,9 +90,9 @@ public class MainActivity extends AppCompatActivity
                         .commit();
                 break;
             case 1:
-                fragment = new SettingsFragment();
+                fragment = new MotionDataFragment();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, fragment, SettingsFragment.TAG)
+                        .replace(R.id.container, fragment, MotionDataFragment.TAG)
                         .commit();
                 break;
             case 2:
@@ -169,15 +170,16 @@ public class MainActivity extends AppCompatActivity
         notificationManager.cancel(EmotivService.INSIGHT_NOTIFICATION_ID);
     }
 
-    public void changeActivity(View v){
-        startActivity(new Intent(this,HomeActivity.class));
-    }
 
+    //You can define an insight receiver either inside an Activity or a Fragment.
+    //If the receiver is in the activity you have to checkout what fragment is displayed before updating any view component
     public class InsightReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            PerformanceMetrics myFragment = (PerformanceMetrics) getSupportFragmentManager().findFragmentByTag(PerformanceMetrics.TAG);
-            if (myFragment != null && myFragment.isVisible()) {
+            PerformanceMetrics performanceMetrics = (PerformanceMetrics) getSupportFragmentManager().findFragmentByTag(PerformanceMetrics.TAG);
+            MotionDataFragment motionDataFragment = (MotionDataFragment) getSupportFragmentManager().findFragmentByTag(MotionDataFragment.TAG);
+
+            if (performanceMetrics != null && performanceMetrics.isVisible()) {
                 // add your code here
                 float engagementBoredomScore = intent.getFloatExtra(EmotivService.ENGAGEMENT_BOREDOM_SCORE, 0);
                 float excitementLongTermScore = intent.getFloatExtra(EmotivService.EXCITEMENT_LONG_TERM_SCORE, 0);
@@ -186,17 +188,13 @@ public class MainActivity extends AppCompatActivity
                 float stressScore = intent.getFloatExtra(EmotivService.STRESS_SCORE, 0);
                 float interestScore = intent.getFloatExtra(EmotivService.INTEREST_SCORE, 0);
 
-                double[] eeg_data = intent.getDoubleArrayExtra(EmotivService.MOTION_DATA);
-                int motion_number_sample = intent.getIntExtra(EmotivService.MOTION_NUMBER_OF_SAMPLE, 0);
-
                 tv_relaxationScore = (TextView) findViewById(R.id.tv_relaxationScore);
                 tv_engagementBoredomScore = (TextView) findViewById(R.id.tv_enboredom);
                 tv_excitementLongTermScore = (TextView) findViewById(R.id.tv_exlong);
                 tv_instantaneousExcitementScore = (TextView) findViewById(R.id.tv_exins);
                 tv_stressScore = (TextView) findViewById(R.id.tv_stress_score);
                 tv_interestScore = (TextView) findViewById(R.id.tv_interest_score);
-                tv_motion_data = (TextView) findViewById(R.id.tv_motion_data);
-                tv_number_samples = (TextView) findViewById(R.id.tv_number_samples);
+
 
                 tv_relaxationScore.setText(relaxationScore + "");
                 tv_engagementBoredomScore.setText(engagementBoredomScore + "");
@@ -204,6 +202,30 @@ public class MainActivity extends AppCompatActivity
                 tv_instantaneousExcitementScore.setText(instantaneousExcitementScore + "");
                 tv_stressScore.setText(stressScore + "");
                 tv_interestScore.setText(interestScore + "");
+            }
+            if (motionDataFragment != null && motionDataFragment.isVisible()) {
+                tv_motion_data = (TextView) findViewById(R.id.tv_motion_data);
+                tv_number_samples = (TextView) findViewById(R.id.tv_number_samples);
+                double[] eeg_data = intent.getDoubleArrayExtra(EmotivService.MOTION_DATA);
+                int motion_number_sample = intent.getIntExtra(EmotivService.MOTION_NUMBER_OF_SAMPLE, 0);
+                printFirstMotionDataSample(eeg_data);
+                tv_number_samples.setText(motion_number_sample+"");
+            }
+        }
+
+        //The Emotiv Sdk reads a number of eeg data samples every time
+        //This method just prints the first Sample of eeg data
+        //Each eeg data sample is composed for 11 elements
+        public void printFirstMotionDataSample(double[] eeg_data) {
+            tv_motion_data.setText("");
+            if (eeg_data.length >= 11) {
+
+                String input = "";
+                for (int i = 0; i < 11; i++) {
+                    input += (String.valueOf(eeg_data[i]) + ",");
+                }
+                input = input.substring(0, input.length() - 1);
+                tv_motion_data.append(input);
             }
         }
     }
