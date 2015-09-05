@@ -100,7 +100,7 @@ public class SettingsFragment extends Fragment implements InsightDevicesAdapter.
             public void run() {
                 dialog.dismiss();
                 redraw_listview();
-                Toast.makeText(getContext(), "Device connected!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Device connected!", Toast.LENGTH_SHORT).show();
                 showNotification();
             }
         }, 1000);

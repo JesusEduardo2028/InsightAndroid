@@ -23,4 +23,11 @@
         android:layout_marginTop="20dp"
         android:visibility="gone"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="If the device is already connected it will not appear on this list"
+        android:id="@+id/textView" />
+
 </LinearLayout>
