@@ -140,27 +140,110 @@
         android:layout_height="match_parent"
         android:id="@+id/rl_boredom_container"></RelativeLayout>-->
 
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Engagement/boredom"
-        android:background="@android:color/black"
-        android:id="@+id/textView2"
-        android:layout_marginTop="20px"
-        android:layout_marginBottom="20px"
-        android:textColor="@android:color/white"
-        android:textAlignment="center"
-        android:gravity="center"
-        />
-
-
-
-        <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart_engagementBoredom"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Engagement/boredom"
+                android:background="@android:color/black"
+                android:id="@+id/textView2"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
+                android:textColor="@android:color/white"
+                android:textAlignment="center"
+                android:gravity="center"
+                />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart_engagementBoredom"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Instantaneous Excitement"
+                android:background="@android:color/black"
+                android:id="@+id/textView5"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
+                android:textColor="@android:color/white"
+                android:textAlignment="center"
+                android:gravity="center"
+                />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart_instantaneousExcitement"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Long Term Excitement"
+                android:background="@android:color/black"
+                android:id="@+id/textView9"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
+                android:textColor="@android:color/white"
+                android:textAlignment="center"
+                android:gravity="center"
+                />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart_longTermExcitement"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Excitement - Stress"
+                android:background="@android:color/black"
+                android:id="@+id/textView10"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
+                android:textColor="@android:color/white"
+                android:textAlignment="center"
+                android:gravity="center"
+                />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart_relaxationStress"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Interest"
+                android:background="@android:color/black"
+                android:id="@+id/textView11"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
+                android:textColor="@android:color/white"
+                android:textAlignment="center"
+                android:gravity="center"
+                />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart_interest"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
 
 
 
