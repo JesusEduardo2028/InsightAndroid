@@ -135,5 +135,103 @@
             android:id="@+id/tv_interest_score" />
     </LinearLayout>
 
+<!--    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rl_boredom_container"></RelativeLayout>-->
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Engagement/boredom"
+        android:background="@android:color/black"
+        android:id="@+id/textView2"
+        android:layout_marginTop="20px"
+        android:layout_marginBottom="20px"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:gravity="center"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp" >
+
+        <RelativeLayout
+            android:id="@+id/re"
+            android:layout_width="27dp"
+            android:layout_height="200dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/li"
+                android:layout_width="25dp"
+                android:layout_height="200dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.2"
+                    android:alpha="0.8"
+                    android:text="1.0"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.2"
+                    android:alpha="0.9"
+                    android:gravity="center"
+                    android:text="0.5"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.2"
+                    android:alpha="0.8"
+                    android:gravity="bottom"
+                    android:text="0"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="200dp"
+                android:layout_toRightOf="@+id/li"
+                android:layout_weight="0.2"
+                android:background="#696968" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_boredom_container"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/re" >
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="1dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="98dp"
+                android:layout_weight="0.2"
+                android:background="#696968" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+
 
 </LinearLayout>

@@ -5,13 +5,17 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.unicauca.jesusmunoz.insightandroid.R;
+import com.unicauca.jesusmunoz.main.Graph;
 import com.unicauca.jesusmunoz.services.EmotivService;
 
 
@@ -26,6 +30,12 @@ public class PerformanceMetrics extends Fragment {
     TextView tv_excitementLongTermScore;
     TextView tv_stressScore;
     TextView tv_interestScore;
+    RelativeLayout rl_boredom_container;
+    
+
+
+
+    Graph graphEngagementBoredom;
 
     public PerformanceMetrics() {
         // Required empty public constructor
@@ -55,7 +65,27 @@ public class PerformanceMetrics extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_performance_metrics, container, false);
+
+        View root = inflater.inflate(R.layout.fragment_performance_metrics, container, false);
+
+        tv_relaxationScore = (TextView) root.findViewById(R.id.tv_relaxationScore);
+        tv_engagementBoredomScore = (TextView) root.findViewById(R.id.tv_enboredom);
+        tv_excitementLongTermScore = (TextView) root.findViewById(R.id.tv_exlong);
+        tv_instantaneousExcitementScore = (TextView) root.findViewById(R.id.tv_exins);
+        tv_stressScore = (TextView) root.findViewById(R.id.tv_stress_score);
+        tv_interestScore = (TextView) root.findViewById(R.id.tv_interest_score);
+        rl_boredom_container = (RelativeLayout) root.findViewById(R.id.rl_boredom_container);
+
+        Point pt = new Point();
+        getActivity().getWindowManager().getDefaultDisplay().getSize(pt);
+        int graphWidth = pt.x - 10;
+        graphEngagementBoredom = new Graph(getActivity(), graphWidth, Color.rgb(146, 211, 238));
+        graphEngagementBoredom.setScale(1f);
+        graphEngagementBoredom.setHeight(200f);
+        rl_boredom_container.addView(graphEngagementBoredom);
+
+
+        return root;
     }
 
 
@@ -83,14 +113,7 @@ public class PerformanceMetrics extends Fragment {
                 float stressScore = intent.getFloatExtra(EmotivService.STRESS_SCORE, 0);
                 float interestScore = intent.getFloatExtra(EmotivService.INTEREST_SCORE, 0);
 
-                tv_relaxationScore = (TextView) getView().findViewById(R.id.tv_relaxationScore);
-                tv_engagementBoredomScore = (TextView) getView().findViewById(R.id.tv_enboredom);
-                tv_excitementLongTermScore = (TextView) getView().findViewById(R.id.tv_exlong);
-                tv_instantaneousExcitementScore = (TextView) getView().findViewById(R.id.tv_exins);
-                tv_stressScore = (TextView) getView().findViewById(R.id.tv_stress_score);
-                tv_interestScore = (TextView) getView().findViewById(R.id.tv_interest_score);
-
-
+                graphEngagementBoredom.addData(engagementBoredomScore);
                 tv_relaxationScore.setText(relaxationScore + "");
                 tv_engagementBoredomScore.setText(engagementBoredomScore + "");
                 tv_excitementLongTermScore.setText(excitementLongTermScore + "");
